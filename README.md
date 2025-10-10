@@ -126,8 +126,7 @@
 
 
 ## SERVER SIDE PROCESSING:
-
-
+<img src"https://photos.app.goo.gl/ZbkSEhnbH6fqWZKT9">
 
 
 ## HOMEPAGE:
