@@ -6,136 +6,132 @@
 
 
 ## FORMULA:
-P = I<sup>2</sup>R
-<br> P --> Power (in watts)
-<br> I --> Intensity
-<br> R --> Resistance
-
-## DESIGN STEPS:
-
-### Step 1:
-Clone the repository from GitHub.
-
-### Step 2:
-Create Django Admin project.
-
-### Step 3:
-Create a New App under the Django Admin project.
-
-### Step 4:
-Create python programs for views and urls to perform server side processing.
-
-### Step 5:
-Create a HTML file to implement form based input and output.
-
-### Step 6:
-Publish the website in the given URL.
-
-## PROGRAM :
-    html code
-
     <!DOCTYPE html>
-<html>
+    <html>
     <head>
-    <title>Power Calculation</title>
+    <title>Power Calculator</title>
     <style>
         body {
+            background-color: red;
             font-family: Arial, sans-serif;
-            margin: 40px;
+            text-align: center;
+            margin: 0;
+            padding: 50px;
         }
-        input[type="text"], input[type="submit"] {
-            padding: 8px;
-            margin: 8px 0;
-            width: 200px;
+
+        h1 {
+            color: white;
+            font-size: 36px;
+            margin-bottom: 30px;
         }
-        .result {
-            margin-top: 20px;
+
+        .form-container {
+            display: inline-block;
+            text-align: left;
+        }
+
+        label {
+            color: black;
             font-weight: bold;
+            font-size: 14px;
         }
+
+        input[type="text"] {
+            width: 120px;
+            height: 25px;
+            margin-left: 10px;
+            border: 1px solid black;
+            padding: 3px;
+        }
+
+        input[type="submit"] {
+            padding: 8px 15px;
+            background-color: white;
+            border: 1px solid black;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 15px 0;
+            display: block;
+        }
+
+        input[type="submit"]:hover {
+            background-color: lightgray;
+        }
+
+        .result {
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
         .error {
-            color: red;
-            margin-top: 20px;
+            color: black;
+            font-size: 14px;
+            margin: 10px 0;
         }
     </style>
-</head>
-<body>
+    </head>
+    <body>
+    <h1>Incandescent Bulb Power Calculator</h1>
 
-    <h2>Calculate Power (P = I² × R)</h2>
+    <div class="form-container">
+        <form id="powerForm" onsubmit="calculatePower(event)">
+            <label for="current">Current (I) in Amps</label>
+            <input type="text" id="current" name="current" required><br><br>
 
-    <form method="POST">
-        {% csrf_token %}
-        
-        <label for="current">Current (I in Amps):</label><br>
-        <input type="text" id="current" name="current" placeholder="Enter current"><br>
+            <label for="resistance">Resistance (R) in Ohms</label>
+            <input type="text" id="resistance" name="resistance" required><br><br>
 
-        <label for="resistance">Resistance (R in Ohms):</label><br>
-        <input type="text" id="resistance" name="resistance" placeholder="Enter resistance"><br>
+            <input type="submit" value="Calculate Power">
+        </form>
 
-        <input type="submit" value="Calculate Power">
-    </form>
-
-    {% if power %}
-        <div class="result">
-            Power = {{ power }} Watts
+        <div id="result" class="result" style="display: none;">
+            <br>
+            Power (P) = <span id="powerValue"></span> Watts<br>
+             
         </div>
-    {% endif %}
 
-    {% if error %}
-        <div class="error">
-            Error: {{ error }}
+        <div id="error" class="error" style="display: none;">
+             
         </div>
-    {% endif %}
+    </div>
 
+    <script>
+        function calculatePower(event) {
+            event.preventDefault();
+            
+            const current = parseFloat(document.getElementById('current').value);
+            const resistance = parseFloat(document.getElementById('resistance').value);
+            
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('result').style.display = 'none';
+            
+            if (isNaN(current) || isNaN(resistance)) {
+                document.getElementById('error').textContent = 'Please enter valid numbers';
+                document.getElementById('error').style.display = 'block';
+                return;
+            }
+            
+            const power = Math.pow(current, 2) * resistance;
+            
+            document.getElementById('powerValue').textContent = power.toFixed(2);
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
     </body>
     </html>
 
-    urls.py
-
-    from django.contrib import admin
-    from django.urls import path
-    from mathapp import views
-
-    urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.calculate_power, name='calculate_power') # root URL
-     ]
-
-    view.py
-
-    from django.shortcuts import render
-
-    def calculate_power(request):
-      power = None
-      error = None
-
-    if request.method == 'POST':
-        print("Request method is used")
-
-        try:
-            current = float(request.POST.get('current'))
-            resistance = float(request.POST.get('resistance'))
-
-            power = (current ** 2) * resistance
-
-            print("Current:", current)
-            print("Resistance:", resistance)
-            print("Power:", power)
-
-        except (TypeError, ValueError):
-            error = "Please enter valid numeric values."
-            print("Invalid input received.")
-
-    return render(request, 'mathapp/math.html', {
-        'power': power,
-        'error': error
-    })
 
 
 
 ## SERVER SIDE PROCESSING:
+<img width="617" height="99" alt="image" src="https://github.com/user-attachments/assets/80c34083-c8d5-4a2a-bb4c-1fe6c28069e1" />
+
 
 
 ## HOMEPAGE:
+<img width="1154" height="455" alt="image" src="https://github.com/user-attachments/assets/48eadede-9be4-48d1-a4fa-db0c3231a7a6" />
 
 
 ## RESULT:
