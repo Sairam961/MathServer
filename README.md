@@ -126,7 +126,7 @@
 
 
 ## SERVER SIDE PROCESSING:
-<img width="617" height="99" alt="image" src="https://github.com/user-attachments/assets/80c34083-c8d5-4a2a-bb4c-1fe6c28069e1" />
+
 
 
 
