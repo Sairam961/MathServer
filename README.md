@@ -126,7 +126,8 @@
 
 
 ## SERVER SIDE PROCESSING:
-<img src"https://photos.app.goo.gl/ZbkSEhnbH6fqWZKT9">
+![WhatsApp Image 2025-10-10 at 13 42 44_d89a1d42](https://github.com/user-attachments/assets/48518033-c8be-4989-ae67-13fa3345fe74)
+
 
 
 ## HOMEPAGE:
